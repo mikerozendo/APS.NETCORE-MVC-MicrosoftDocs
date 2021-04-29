@@ -10,6 +10,7 @@ namespace MSdocsMVC.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Genre { get; set; }
+        public string Rating { get; set; }
 
 
         //Utilizando DataAnnotations para setar a forma como o atributo será exibido na view.
