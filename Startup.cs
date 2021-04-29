@@ -15,6 +15,9 @@ namespace MSdocsMVC
 {
     public class Startup
     {
+
+        //A classe Startup é utilizada para definir as configurações iniciais da aplicação, é comum 
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,6 +30,7 @@ namespace MSdocsMVC
         {
             services.AddControllersWithViews();
 
+            //Injeção de dependência do banco de dados.
             services.AddDbContext<MvcMovieContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
         }
@@ -53,6 +57,8 @@ namespace MSdocsMVC
 
             app.UseEndpoints(endpoints =>
             {
+               //Definição de rota padrão da aplicação.
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
