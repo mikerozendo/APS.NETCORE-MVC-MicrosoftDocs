@@ -7,22 +7,37 @@ namespace MSdocsMVC.Models
 {
     public class Movie
     {
+
+        // utilizando DataAnnotations para fazer validações
+
         public int Id { get; set; }
+
+        [StringLength(60, MinimumLength = 3)]
+        [Required]
         public string Title { get; set; }
-        public string Genre { get; set; }
-        public string Rating { get; set; }
 
 
-        //Utilizando DataAnnotations para setar a forma como o atributo será exibido na view.
-        [Column(TypeName = "decimal(18, 2)")]
-        public decimal Price { get; set; }
-
-        //Aqui por exemplo podemos definir como o atributo será renderizado pela view
-        // E podemos também especificar o tipo de data que precisamos,
-        // Quando definimos nosso DataType.Date estamos tirando o tempo da notação de data.
         [Display(Name = "Release Date")]
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
+
+
+        [Range(1, 100)]
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal Price { get; set; }
+
+
+        [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
+        [Required]
+        [StringLength(30)]
+        public string Genre { get; set; }
+
+
+        [RegularExpression(@"^[A-Z]+[a-zA-Z0-9""'\s-]*$")]
+        [StringLength(5)]
+        [Required]
+        public string Rating { get; set; }
 
     }
 }
